@@ -3,13 +3,23 @@
 //
 #include "LinkedList.h"
 #include <iostream>
+#include <string>
 
 using namespace std;
 
 int main() {
-    int choice, value, i, position;
+    int choice, i, position;
+
+    // Initialization for int template
+    int value;
     int* list;
-    LinkedList linkedList;
+    LinkedList<int> linkedList;
+
+    // Initialization for float template
+//    float value;
+//    float* list;
+//    LinkedList<float> linkedList;
+
     cout<<"Linked list is initialized.\n";
     do {
         cout << "Linked list operations:\n1. Insert at beginning\n2. Remove from beginning"
@@ -32,7 +42,7 @@ int main() {
                 cout<<"The list: \n";
                 i = 0;
                 list = linkedList.listAsArray();
-                while(list[i] != NULL)
+                while(list[i] != EMPTY)
                     cout<<list[i++]<<" --> ";
                 cout<<endl;
                 break;

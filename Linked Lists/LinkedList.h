@@ -4,41 +4,48 @@
 
 #include <cstddef>
 
+#define EMPTY -99999
+
+template<class T>
 struct Node {
-    int value;
-    Node *next;
+    T value;
+    Node<T> *next;
 };
 
+template<class T>
 class LinkedList {
-    Node *head;
+    Node<T> *head;
 
     public:
         LinkedList();
-        void insert(int x);
-        void insertAt(int x, int position);
-        int remove();
-        int removeAt(int position);
+        void insert(T x);
+        void insertAt(T x, int position);
+        T remove();
+        T removeAt(int position);
         int count();
-        int* listAsArray();
+        T* listAsArray();
         bool isEmpty();
 
 };
 
-LinkedList::LinkedList() {
-    head = new Node;
-    head->value = NULL;
+template<class T>
+LinkedList<T>::LinkedList() {
+    head = new Node<T>;
+    head->value = EMPTY;
     head->next = NULL;
 }
 
-bool LinkedList::isEmpty() {
-    if(head->value == NULL)
+template<class T>
+bool LinkedList<T>::isEmpty() {
+    if(head->value == EMPTY)
         return true;
     else
         return false;
 }
 
-void LinkedList::insert(int x) {
-    Node *new_node = new Node;
+template<class T>
+void LinkedList<T>::insert(T x) {
+    Node<T> *new_node = new Node<T>;
     new_node->value = x;
     if(isEmpty())
         new_node->next = NULL;
@@ -47,15 +54,16 @@ void LinkedList::insert(int x) {
     head = new_node;
 }
 
-void LinkedList::insertAt(int x, int position) {
-    Node *new_node = new Node;
+template<class T>
+void LinkedList<T>::insertAt(T x, int position) {
+    Node<T> *new_node = new Node<T>;
     new_node->value = x;
     if (isEmpty()) {
         new_node->next = NULL;
         head = new_node;
     }
     else {
-        Node *ptr = head;
+        Node<T> *ptr = head;
         int iter = count() - position;
         if (iter <= 0)
             new_node->next = ptr;
@@ -68,11 +76,12 @@ void LinkedList::insertAt(int x, int position) {
     }
 }
 
-int LinkedList::remove() {
+template<class T>
+T LinkedList<T>::remove() {
     int value;
     if(head->next == NULL) {
         value = head->value;
-        head->value = NULL;
+        head->value = EMPTY;
     }
     else {
         value = head->value;
@@ -81,8 +90,9 @@ int LinkedList::remove() {
     return value;
 }
 
-int LinkedList::removeAt(int position) {
-    Node *ptr = head;
+template<class T>
+T LinkedList<T>::removeAt(int position) {
+    Node<T> *ptr = head;
     int value;
     if (! isEmpty()) {
         int iter = count() - position;
@@ -106,9 +116,10 @@ int LinkedList::removeAt(int position) {
     }
 }
 
-int LinkedList::count() {
+template<class T>
+int LinkedList<T>::count() {
     int count = 0;
-    Node *ptr = head;
+    Node<T> *ptr = head;
     if(!isEmpty())
         count++;
     while(ptr->next != NULL) {
@@ -119,10 +130,11 @@ int LinkedList::count() {
     return count;
 }
 
-int * LinkedList::listAsArray() {
-    Node *ptr = head;
+template<class T>
+T * LinkedList<T>::listAsArray() {
+    Node<T> *ptr = head;
     int size = count() + 1;
-    int* list = new int[size]();
+    T* list = new T[size]();
     int index = 0;
     if(!isEmpty()) {
         list[index++] = ptr->value;
@@ -131,6 +143,6 @@ int * LinkedList::listAsArray() {
             list[index++] = ptr->value;
         }
     }
-    list[index] = NULL;
+    list[index] = EMPTY;
     return list;
 }

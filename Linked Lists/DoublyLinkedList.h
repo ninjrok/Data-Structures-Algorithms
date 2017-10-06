@@ -4,6 +4,8 @@
 
 #include <cstddef>
 
+#define EMPTY -99999
+
 struct Node {
     int value;
     Node *prev, *next;
@@ -24,13 +26,13 @@ class DoublyLinkedList {
 
 DoublyLinkedList::DoublyLinkedList() {
     head = new Node;
-    head->value = NULL;
+    head->value = EMPTY;
     head->prev = NULL;
     head->next = NULL;
 }
 
 bool DoublyLinkedList::isEmpty() {
-    if(head->value == NULL)
+    if(head->value == EMPTY)
         return true;
     else
         return false;
@@ -68,7 +70,7 @@ int DoublyLinkedList::remove() {
     int value;
     if(head->next == NULL) {
         value = head->value;
-        head->value = NULL;
+        head->value = EMPTY;
     }
     else {
         value = head->value;
@@ -90,6 +92,6 @@ int * DoublyLinkedList::listAsArray() {
             list[index++] = ptr->value;
         }
     }
-    list[index] = NULL;
+    list[index] = EMPTY;
     return list;
 }
