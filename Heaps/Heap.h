@@ -129,7 +129,7 @@ class Heap {
                 cout << "Heap is empty\n";
                 return;
             }
-            cout<<"Heap: \n";
+            cout<<"Heap: ";
             for (int i = 0; i < capacity; ++i) {
                 cout<<arr[i]<<" ";
             }
