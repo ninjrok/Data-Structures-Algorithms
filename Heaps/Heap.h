@@ -105,7 +105,6 @@ class Heap {
             for (int i = (n-1)/2; i >= 0; i--)
                 heapifyDown(i);
 
-            cout<<"Heap is at "<<&arr<<endl;
         }
 
         void insert(int data) {
