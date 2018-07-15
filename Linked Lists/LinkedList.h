@@ -14,9 +14,8 @@ struct Node {
 
 template<class T>
 class LinkedList {
-    Node<T> *head;
-
     public:
+        Node<T> *head;
         LinkedList();
         void insert(T x);
         void insertAt(T x, int position);
@@ -32,7 +31,7 @@ template<class T>
 LinkedList<T>::LinkedList() {
     head = new Node<T>;
     head->value = EMPTY;
-    head->next = NULL;
+    head->next = nullptr;
 }
 
 template<class T>
@@ -48,7 +47,7 @@ void LinkedList<T>::insert(T x) {
     Node<T> *new_node = new Node<T>;
     new_node->value = x;
     if(isEmpty())
-        new_node->next = NULL;
+        new_node->next = nullptr;
     else
         new_node->next = head;
     head = new_node;
@@ -59,7 +58,7 @@ void LinkedList<T>::insertAt(T x, int position) {
     Node<T> *new_node = new Node<T>;
     new_node->value = x;
     if (isEmpty()) {
-        new_node->next = NULL;
+        new_node->next = nullptr;
         head = new_node;
     }
     else {
@@ -79,7 +78,7 @@ void LinkedList<T>::insertAt(T x, int position) {
 template<class T>
 T LinkedList<T>::remove() {
     int value;
-    if(head->next == NULL) {
+    if(head->next == nullptr) {
         value = head->value;
         head->value = EMPTY;
     }
@@ -103,13 +102,13 @@ T LinkedList<T>::removeAt(int position) {
         else {
             for (int i = 0; i < iter; i++)
                 ptr = ptr->next;
-            if (ptr->next != NULL && ptr->next->next != NULL) {
+            if (ptr->next != nullptr && ptr->next->next != nullptr) {
                 value = ptr->next->value;
                 ptr->next = ptr->next->next;
             }
-            else if (ptr->next != NULL && ptr->next->next == NULL) {
+            else if (ptr->next != nullptr && ptr->next->next == nullptr) {
                 value = ptr->next->value;
-                ptr->next = NULL;
+                ptr->next = nullptr;
             }
         }
         return value;
@@ -122,7 +121,7 @@ int LinkedList<T>::count() {
     Node<T> *ptr = head;
     if(!isEmpty())
         count++;
-    while(ptr->next != NULL) {
+    while(ptr->next != nullptr) {
         count++;
         ptr = ptr->next;
     }
@@ -138,7 +137,7 @@ T * LinkedList<T>::listAsArray() {
     int index = 0;
     if(!isEmpty()) {
         list[index++] = ptr->value;
-        while (ptr->next != NULL) {
+        while (ptr->next != nullptr) {
             ptr = ptr->next;
             list[index++] = ptr->value;
         }
