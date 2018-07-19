@@ -38,7 +38,7 @@ int fibonacci_bottom_up(int n) {
 }
 
 int main() {
-    int n, *a;
+    int n;
     cout<<"Enter n: ";
     cin>>n;
 
